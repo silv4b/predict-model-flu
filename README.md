@@ -16,7 +16,23 @@ Este projeto utiliza Machine Learning para prever se uma pessoa está com gripe 
 
 ## Como Rodar
 
-1. Gere os dados fictícios:
+1. Crie um ambiente virtual python
+
+   ```bash
+   python -m venv myenv
+   ```
+
+2. Execute os comandos
+
+    ```bash
+    # pacotes base
+    pip install matplotlib pandas seaborn scikit-learn
+
+    # garantia de que não falta nenhum
+    pip install -r requirements.txt
+    ```
+
+3. Inicie os scripts
 
    ```bash
    python main.py
