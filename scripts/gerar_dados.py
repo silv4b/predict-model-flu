@@ -6,7 +6,6 @@ import shutil as st
 
 def gerar_dados(quantidade_linhas=1000):
     caminho_do_projeto = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    print(f"\nCaminho do Projeto: {caminho_do_projeto}\n")
 
     # Removendo diretório de dados
     if os.path.exists(f"{caminho_do_projeto}/dados"):

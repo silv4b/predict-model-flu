@@ -1,0 +1,10 @@
+Você tem febre?
+Sente dores no corpo?
+Tem tosse?
+Tem congestão nasal?
+Sente cansaço extremo?
+Apresenta dificuldade para respirar?
+Tem dor de cabeça?
+Recentemente teve contato com alguém gripado?
+Você tem menos de 10 anos ou mais de 60?
+Você já teve gripe nos últimos 6 meses?
