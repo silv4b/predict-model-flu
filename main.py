@@ -1,24 +1,40 @@
+# main.py
+
 from scripts import gerar_dados as gd, treinar_modelo as tm, executar_predicao as ep
 
 
-def sair():
-    if int(input('Encerrar aplicação? [1 - sim | 0 - não]')) == 1:
-        exit(0)
+def sair() -> int:
+    if int(input("\nEncerrar aplicação? [1 - sim | 0 - não]: ")) == 1:
+        return 1
 
 
 def exec():
     while True:
-        if int(input("Treinar modelo com dados fictício? [1 - sim | 0 - não]: ")) == 1:
+        opcao = int(
+            input("\nTreinar modelo com dados fictícios? [1 - sim | 0 - não]: ")
+        )
+        if opcao == 1:
             print("Executando treinamento com dados fictícios ...")
-            gd.gerar_dados(1000)
+            exibir_df = int(input("Exibir DataFrame? [1 - sim | 0 - não]: "))
+
+            if exibir_df == 1:
+                gd.gerar_dados(exibir_df=True)
+            else:
+                gd.gerar_dados(1000)
+
             tm.treinar_modelo()
             if int(input("Executar questionário? [1 - sim | 0 - não]: ")) == 1:
                 ep.executar_predicao()
-                sair()
+                if sair() == 1:
+                    break
+            else:
+                print("Encerrando ...")
+                break
         else:
-            print("Executando aplicação com dados fictícios ...")
+            print("\nExecutando aplicação com dados fictícios salvos ...")
             ep.executar_predicao()
-            sair()
+            if sair() == 1:
+                break
 
 
 if __name__ == "__main__":

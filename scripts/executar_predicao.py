@@ -1,3 +1,5 @@
+# executar_predicao.py
+
 import pickle
 import pandas as pd
 import os
@@ -8,7 +10,11 @@ def executar_predicao():
 
     # Caminho do modelo salvo
     modelo_caminho = os.path.join(caminho_do_projeto, "modelo", "modelo_gripe.pkl")
-    print(modelo_caminho)
+
+    # Verifica se o caminho do arquivo existe
+    if not os.path.exists(modelo_caminho):
+        print("Erro: Arquivo de modelo não existe")
+        return
 
     # Carregar o modelo treinado
     with open(modelo_caminho, "rb") as arquivo_modelo:
@@ -16,7 +22,13 @@ def executar_predicao():
 
     # Perguntas salvas em perguntas.txt
     perguntas = []
-    caminho_perguntas = os.path.join(caminho_do_projeto, "docs", "perguntas.txt")
+    caminho_perguntas = os.path.join(caminho_do_projeto, "assets", "perguntas.txt")
+
+    # Verifica se o caminho do arquivo existe
+    if not os.path.exists(caminho_perguntas):
+        print("Erro: O arquivo de perguntas não foi encontrado.")
+        return
+
     with open(caminho_perguntas, "r", encoding="utf8") as arquivo_perguntas:
         for linha in arquivo_perguntas:
             perguntas.append(linha.strip())
@@ -38,18 +50,13 @@ def executar_predicao():
                 )
 
     # Transformar as respostas em um DataFrame com nomes de colunas
-    colunas = [
-        "febre",
-        "dores_corpo",
-        "tosse",
-        "congestao_nasal",
-        "cansaco_extremo",
-        "dificuldade_respirar",
-        "dor_cabeca",
-        "contato_gripado",
-        "idade_risco",
-        "historico_gripal",
-    ]
+    colunas = []
+    caminho_colunas = os.path.join(caminho_do_projeto, "assets", "colunas.txt")
+
+    with open(caminho_colunas, "r", encoding="utf8") as arquivo_colunas:
+        for linhas in arquivo_colunas:
+            colunas.append(linhas.strip())
+
     respostas_df = pd.DataFrame([respostas_usuario], columns=colunas)
 
     # Fazer a previsão com base nas respostas

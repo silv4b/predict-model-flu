@@ -1,3 +1,5 @@
+# treinar_modelo.py
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
@@ -53,4 +55,4 @@ def treinar_modelo():
 
     with open(f"{caminho_do_projeto}/modelo/modelo_gripe.pkl", "wb") as arquivo_modelo:
         pickle.dump(modelo, arquivo_modelo)
-    print("Modelo treinado e salvo em modelo/modelo_gripe.pkl")
+    print(f"Modelo treinado e salvo em {caminho_do_projeto}/modelo/modelo_gripe.pkl")
